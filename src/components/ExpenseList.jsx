@@ -5,9 +5,10 @@ import { Trash2 } from "lucide-react";
 function ExpenseList({expenses, onDeleteExpense}) {
     const[searchItem, setSearchItem] = useState('');
      
+    const query = searchItem.toLowerCase();
     const filteredExpenses = expenses.filter(expense => {
-        return expense.item.toLowerCase().includes(searchItem.toLowerCase()) || expense.description.toLowerCase().includes(searchItem.toLowerCase());
-    })
+        return expense.item.toLowerCase().includes(query) || expense.description.toLowerCase().includes(query);
+    });
 
     return(
         <div className="flex flex-col gap-6 w-full">
