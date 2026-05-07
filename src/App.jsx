@@ -11,6 +11,11 @@ function App() {
     setExpenses([...expenses, { ...newExpense, id: Date.now() }]);
   }
 
+  function deleteExpense(id) {
+    const updatedExpenses =  expenses.filter((expense) => expense.id !== id); //Keeps every expense where the id is NOT the one clicked; filters it  out
+    setExpenses(updatedExpenses);
+  }
+
   return(
     <div>
       <nav className="border-b border-slate-100 px-8 py-6 mb-8">
@@ -29,7 +34,7 @@ function App() {
       <main className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-[400px_1fr] gap-10 items-start">
         <ExpenseCard onAddExpense={addExpense} />
 
-        <ExpenseList expenses={expenses} />
+        <ExpenseList expenses={expenses} onDeleteExpense={deleteExpense} />
       </main>
     </div>
   );

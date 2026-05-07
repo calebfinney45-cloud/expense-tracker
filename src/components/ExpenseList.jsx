@@ -1,7 +1,8 @@
 import {useState} from "react";
 import SearchBar from "./SearchBar.jsx";
+import { Trash2 } from "lucide-react";
 
-function ExpenseList({expenses}) {
+function ExpenseList({expenses, onDeleteExpense}) {
     const[searchItem, setSearchItem] = useState('');
      
     const filteredExpenses = expenses.filter(expense => {
@@ -20,6 +21,7 @@ function ExpenseList({expenses}) {
                                 <th>Category</th>
                                 <th>Amount(Ksh.)</th>
                                 <th>Date</th>
+                                <th>Clear</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -30,6 +32,13 @@ function ExpenseList({expenses}) {
                                     <td>{expense.category}</td>
                                     <td className="font-mono">{expense.amount}</td>
                                     <td className="text-blue-500">{expense.date}</td>
+                                    <td className="text-right">
+                                        <button onClick={() => onDeleteExpense(expense.id)}
+                                            className="flex items-center justify-center h-9 w-9 rounded-lg hover:bg-red-300 transition-all active:scale-90"     
+                                        >
+                                            <Trash2 size={18} />
+                                        </button>
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>
