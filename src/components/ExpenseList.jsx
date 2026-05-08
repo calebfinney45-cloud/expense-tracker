@@ -3,6 +3,12 @@ import SearchBar from "./SearchBar.jsx";
 import { Trash2 } from "lucide-react";
 
 function ExpenseList({expenses, onDeleteExpense}) {
+    if(expenses.length === 0) {
+        return(
+            <h1 className="text-4xl font-bold items-center  py-30 px-30 text-center font-barlow">NO EXPENSES FOUND</h1>
+        );
+    }
+
     const[searchItem, setSearchItem] = useState('');
      
     const query = searchItem.toLowerCase();
@@ -29,10 +35,10 @@ function ExpenseList({expenses, onDeleteExpense}) {
                             {filteredExpenses.map((expense) => (
                                 <tr key={expense.id}>
                                     <td className="font-bold">{expense.item}</td>
-                                    <td className="text-slate-500">{expense.description}</td>
-                                    <td>{expense.category}</td>
-                                    <td className="font-mono">{expense.amount}</td>
-                                    <td className="text-blue-500">{expense.date}</td>
+                                    <td className="text-slate-500 border border-gray-300">{expense.description}</td>
+                                    <td className="border border-gray-300">{expense.category}</td>
+                                    <td className="font-mono border border-gray-300">{expense.amount}</td>
+                                    <td className="text-blue-500 border border-gray-300">{expense.date}</td>
                                     <td className="text-right">
                                         <button onClick={() => onDeleteExpense(expense.id)}
                                             className="flex items-center justify-center h-9 w-9 rounded-lg hover:bg-red-300 transition-all active:scale-90"     
